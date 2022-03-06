@@ -1,6 +1,12 @@
 postgres:
 	docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
+startdb:
+	docker start postgres12
+
+stopdb:
+	docker stop postgres12
+
 createdb:
 	docker exec -it postgres12 createdb --username=root --owner=root birthday
 
@@ -16,4 +22,7 @@ migratedown:
 sqlc:
 	sqlc generate
 
-.PHONY: postgres, createdb, dropdb, migrateup, migratedown, sqlc
+test:
+	go test -v -cover ./...
+
+.PHONY: postgres, createdb, dropdb, migrateup, migratedown, sqlc, startdb, stopdb, test

@@ -13,7 +13,8 @@ WHERE id = $1 LIMIT 1;
 -- name: ListBirthdays :many
 SELECT * FROM birthdays
 ORDER BY id
-LIMIT $1;
+LIMIT $1
+OFFSET $2;
 
 -- name: UpdateBirthday :one
 UPDATE birthdays

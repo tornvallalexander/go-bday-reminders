@@ -21,8 +21,8 @@ func createRandomBirthday(t *testing.T) Birthday {
 	require.NotEmpty(t, birthday)
 
 	require.Equal(t, arg.FullName, birthday.FullName)
-	require.Equal(t, arg.FutureBirthday, birthday.FutureBirthday)
 
+	require.NotZero(t, birthday.FutureBirthday)
 	require.NotZero(t, birthday.ID)
 
 	return birthday

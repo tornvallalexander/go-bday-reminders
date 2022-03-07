@@ -46,5 +46,7 @@ func RandomFullName() string {
 }
 
 func RandomDate() time.Time {
-	return time.Now().UTC()
+	today := time.Now().UTC()
+	futureBirthday := today.AddDate(1, 0, 0)
+	return futureBirthday
 }

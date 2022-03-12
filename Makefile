@@ -1,23 +1,23 @@
 postgres:
-	docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+	docker run --name postgres_birthday_reminders -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
 startdb:
-	docker start postgres12
+	docker start postgres_birthday_reminders
 
 stopdb:
-	docker stop postgres12
+	docker stop postgres_birthday_reminders
 
 createdb:
-	docker exec -it postgres12 createdb --username=root --owner=root birthday
+	docker exec -it postgres_birthday_reminders createdb --username=root --owner=root birthday_reminders
 
 dropdb:
-	docker exec -it postgres12 dropdb birthday
+	docker exec -it postgres_birthday_reminders dropdb birthday_reminders
 
 migrateup:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/birthday?sslmode=disable" -verbose up
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/birthday_reminders?sslmode=disable" -verbose up
 
 migratedown:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/birthday?sslmode=disable" -verbose down
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/birthday_reminders?sslmode=disable" -verbose down
 
 sqlc:
 	sqlc generate

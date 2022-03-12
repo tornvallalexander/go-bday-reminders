@@ -15,13 +15,13 @@ func SendSms(name string, birthday string) (resp *openapi.ApiV2010Message, err e
 	}
 
 	client := twilio.NewRestClientWithParams(twilio.RestClientParams{
-		Username: config.AccountSid,
-		Password: config.AuthToken,
+		Username: config.TwilioAccountSid,
+		Password: config.TwilioAuthToken,
 	})
 
 	params := &openapi.CreateMessageParams{}
-	params.SetTo(config.Receiver)
-	params.SetFrom(config.Sender)
+	params.SetTo(config.TwilioReceiver)
+	params.SetFrom(config.TwilioSender)
 	params.SetBody(fmt.Sprintf("Födelsedag alert: %s, %s", name, birthday))
 
 	resp, err = client.ApiV2010.CreateMessage(params)

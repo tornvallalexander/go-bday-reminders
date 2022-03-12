@@ -4,13 +4,13 @@ import "github.com/spf13/viper"
 
 // Config stores all necessary configuration for application
 type Config struct {
-	AccountSid    string `mapstructure:"ACCOUNT_SID"`
-	AuthToken     string `mapstructure:"AUTH_TOKEN"`
-	Receiver      string `mapstructure:"RECEIVER"`
-	Sender        string `mapstructure:"SENDER"`
-	DBDriver      string `mapstructure:"DB_DRIVER"`
-	DBSource      string `mapstructure:"DB_SOURCE"`
-	ServerAddress string `mapstructure:"SERVER_ADDRESS"`
+	TwilioAccountSid string `mapstructure:"TWILIO_ACCOUNT_SID"`
+	TwilioAuthToken  string `mapstructure:"TWILIO_AUTH_TOKEN"`
+	TwilioReceiver   string `mapstructure:"TWILIO_RECEIVER"`
+	TwilioSender     string `mapstructure:"TWILIO_SENDER"`
+	DBDriver         string `mapstructure:"DB_DRIVER"`
+	DBSource         string `mapstructure:"DB_SOURCE"`
+	ServerAddress    string `mapstructure:"SERVER_ADDRESS"`
 }
 
 // LoadConfig loads all environment variables

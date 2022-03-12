@@ -9,10 +9,6 @@ import (
 	"log"
 )
 
-const (
-	serverAddress = "localhost:8080"
-)
-
 func main() {
 	config, err := utils.LoadConfig(".")
 	if err != nil {
@@ -25,7 +21,7 @@ func main() {
 	store := db.NewStore(conn)
 	server := api.NewServer(store)
 
-	err = server.Start(serverAddress)
+	err = server.Start(config.ServerAddress)
 	if err != nil {
 		log.Fatal("Couldn't start server:", err)
 	}

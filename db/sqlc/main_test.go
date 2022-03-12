@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"go-bday-reminders/utils"
 	"log"
 	"os"
 	"testing"
@@ -9,15 +10,14 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	dbDriver = "postgres"
-	dbSource = "postgresql://root:secret@localhost:5432/birthday?sslmode=disable"
-)
-
 var testQueries *Queries
 
 func TestMain(m *testing.M) {
-	conn, err := sql.Open(dbDriver, dbSource)
+	config, err := utils.LoadConfig("../..")
+	if err != nil {
+		log.Fatal("Could not load env vars", err)
+	}
+	conn, err := sql.Open(config.DBDriver, config.DBSource)
 	if err != nil {
 		log.Fatal("Could not connect to db", err)
 	}

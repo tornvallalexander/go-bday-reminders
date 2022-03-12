@@ -35,77 +35,122 @@ func (m *MockStore) EXPECT() *MockStoreMockRecorder {
 	return m.recorder
 }
 
-// CreateBirthday mocks base method.
-func (m *MockStore) CreateBirthday(arg0 context.Context, arg1 db.CreateBirthdayParams) (db.Birthday, error) {
+// CreateReminder mocks base method.
+func (m *MockStore) CreateReminder(arg0 context.Context, arg1 db.CreateReminderParams) (db.Reminder, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateBirthday", arg0, arg1)
-	ret0, _ := ret[0].(db.Birthday)
+	ret := m.ctrl.Call(m, "CreateReminder", arg0, arg1)
+	ret0, _ := ret[0].(db.Reminder)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// CreateBirthday indicates an expected call of CreateBirthday.
-func (mr *MockStoreMockRecorder) CreateBirthday(arg0, arg1 interface{}) *gomock.Call {
+// CreateReminder indicates an expected call of CreateReminder.
+func (mr *MockStoreMockRecorder) CreateReminder(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateBirthday", reflect.TypeOf((*MockStore)(nil).CreateBirthday), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateReminder", reflect.TypeOf((*MockStore)(nil).CreateReminder), arg0, arg1)
 }
 
-// DeleteBirthday mocks base method.
-func (m *MockStore) DeleteBirthday(arg0 context.Context, arg1 int64) (db.Birthday, error) {
+// CreateUser mocks base method.
+func (m *MockStore) CreateUser(arg0 context.Context, arg1 db.CreateUserParams) (db.User, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeleteBirthday", arg0, arg1)
-	ret0, _ := ret[0].(db.Birthday)
+	ret := m.ctrl.Call(m, "CreateUser", arg0, arg1)
+	ret0, _ := ret[0].(db.User)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// DeleteBirthday indicates an expected call of DeleteBirthday.
-func (mr *MockStoreMockRecorder) DeleteBirthday(arg0, arg1 interface{}) *gomock.Call {
+// CreateUser indicates an expected call of CreateUser.
+func (mr *MockStoreMockRecorder) CreateUser(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteBirthday", reflect.TypeOf((*MockStore)(nil).DeleteBirthday), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockStore)(nil).CreateUser), arg0, arg1)
 }
 
-// GetBirthday mocks base method.
-func (m *MockStore) GetBirthday(arg0 context.Context, arg1 int64) (db.Birthday, error) {
+// DeleteReminder mocks base method.
+func (m *MockStore) DeleteReminder(arg0 context.Context, arg1 int64) (db.Reminder, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetBirthday", arg0, arg1)
-	ret0, _ := ret[0].(db.Birthday)
+	ret := m.ctrl.Call(m, "DeleteReminder", arg0, arg1)
+	ret0, _ := ret[0].(db.Reminder)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetBirthday indicates an expected call of GetBirthday.
-func (mr *MockStoreMockRecorder) GetBirthday(arg0, arg1 interface{}) *gomock.Call {
+// DeleteReminder indicates an expected call of DeleteReminder.
+func (mr *MockStoreMockRecorder) DeleteReminder(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBirthday", reflect.TypeOf((*MockStore)(nil).GetBirthday), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteReminder", reflect.TypeOf((*MockStore)(nil).DeleteReminder), arg0, arg1)
 }
 
-// ListBirthdays mocks base method.
-func (m *MockStore) ListBirthdays(arg0 context.Context, arg1 db.ListBirthdaysParams) ([]db.Birthday, error) {
+// DeleteUser mocks base method.
+func (m *MockStore) DeleteUser(arg0 context.Context, arg1 string) (string, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ListBirthdays", arg0, arg1)
-	ret0, _ := ret[0].([]db.Birthday)
+	ret := m.ctrl.Call(m, "DeleteUser", arg0, arg1)
+	ret0, _ := ret[0].(string)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// ListBirthdays indicates an expected call of ListBirthdays.
-func (mr *MockStoreMockRecorder) ListBirthdays(arg0, arg1 interface{}) *gomock.Call {
+// DeleteUser indicates an expected call of DeleteUser.
+func (mr *MockStoreMockRecorder) DeleteUser(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListBirthdays", reflect.TypeOf((*MockStore)(nil).ListBirthdays), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteUser", reflect.TypeOf((*MockStore)(nil).DeleteUser), arg0, arg1)
 }
 
-// UpdateBirthday mocks base method.
-func (m *MockStore) UpdateBirthday(arg0 context.Context, arg1 db.UpdateBirthdayParams) (db.Birthday, error) {
+// GetReminder mocks base method.
+func (m *MockStore) GetReminder(arg0 context.Context, arg1 int64) (db.Reminder, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateBirthday", arg0, arg1)
-	ret0, _ := ret[0].(db.Birthday)
+	ret := m.ctrl.Call(m, "GetReminder", arg0, arg1)
+	ret0, _ := ret[0].(db.Reminder)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// UpdateBirthday indicates an expected call of UpdateBirthday.
-func (mr *MockStoreMockRecorder) UpdateBirthday(arg0, arg1 interface{}) *gomock.Call {
+// GetReminder indicates an expected call of GetReminder.
+func (mr *MockStoreMockRecorder) GetReminder(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateBirthday", reflect.TypeOf((*MockStore)(nil).UpdateBirthday), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetReminder", reflect.TypeOf((*MockStore)(nil).GetReminder), arg0, arg1)
+}
+
+// GetUser mocks base method.
+func (m *MockStore) GetUser(arg0 context.Context, arg1 string) (db.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetUser", arg0, arg1)
+	ret0, _ := ret[0].(db.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetUser indicates an expected call of GetUser.
+func (mr *MockStoreMockRecorder) GetUser(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockStore)(nil).GetUser), arg0, arg1)
+}
+
+// ListReminders mocks base method.
+func (m *MockStore) ListReminders(arg0 context.Context, arg1 db.ListRemindersParams) ([]db.Reminder, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListReminders", arg0, arg1)
+	ret0, _ := ret[0].([]db.Reminder)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListReminders indicates an expected call of ListReminders.
+func (mr *MockStoreMockRecorder) ListReminders(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListReminders", reflect.TypeOf((*MockStore)(nil).ListReminders), arg0, arg1)
+}
+
+// UpdateReminder mocks base method.
+func (m *MockStore) UpdateReminder(arg0 context.Context, arg1 db.UpdateReminderParams) (db.Reminder, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateReminder", arg0, arg1)
+	ret0, _ := ret[0].(db.Reminder)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateReminder indicates an expected call of UpdateReminder.
+func (mr *MockStoreMockRecorder) UpdateReminder(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateReminder", reflect.TypeOf((*MockStore)(nil).UpdateReminder), arg0, arg1)
 }

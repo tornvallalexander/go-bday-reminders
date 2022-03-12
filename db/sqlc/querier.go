@@ -7,11 +7,14 @@ import (
 )
 
 type Querier interface {
-	CreateBirthday(ctx context.Context, arg CreateBirthdayParams) (Birthday, error)
-	DeleteBirthday(ctx context.Context, id int64) (Birthday, error)
-	GetBirthday(ctx context.Context, id int64) (Birthday, error)
-	ListBirthdays(ctx context.Context, arg ListBirthdaysParams) ([]Birthday, error)
-	UpdateBirthday(ctx context.Context, arg UpdateBirthdayParams) (Birthday, error)
+	CreateReminder(ctx context.Context, arg CreateReminderParams) (Reminder, error)
+	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
+	DeleteReminder(ctx context.Context, id int64) (Reminder, error)
+	DeleteUser(ctx context.Context, userName string) (string, error)
+	GetReminder(ctx context.Context, id int64) (Reminder, error)
+	GetUser(ctx context.Context, userName string) (User, error)
+	ListReminders(ctx context.Context, arg ListRemindersParams) ([]Reminder, error)
+	UpdateReminder(ctx context.Context, arg UpdateReminderParams) (Reminder, error)
 }
 
 var _ Querier = (*Queries)(nil)

@@ -16,37 +16,37 @@ import (
 	"testing"
 )
 
-func TestGetBirthdayAPI(t *testing.T) {
-	birthday := randomBirthday()
+func TestGetReminderAPI(t *testing.T) {
+	reminder := randomReminder()
 
 	testCases := []struct {
 		name          string
-		birthdayID    int64
+		reminderID    int64
 		buildStubs    func(store *mockdb.MockStore)
 		checkResponse func(t *testing.T, recorder *httptest.ResponseRecorder)
 	}{
 		{
 			name:       "OK",
-			birthdayID: birthday.ID,
+			reminderID: reminder.ID,
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
-					GetBirthday(gomock.Any(), gomock.Eq(birthday.ID)).
+					GetReminder(gomock.Any(), gomock.Eq(reminder.ID)).
 					Times(1).
-					Return(birthday, nil)
+					Return(reminder, nil)
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusOK, recorder.Code)
-				requireBodyMatchBirthday(t, recorder.Body, birthday)
+				requireBodyMatchReminder(t, recorder.Body, reminder)
 			},
 		},
 		{
 			name:       "NotFound",
-			birthdayID: birthday.ID,
+			reminderID: reminder.ID,
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
-					GetBirthday(gomock.Any(), gomock.Eq(birthday.ID)).
+					GetReminder(gomock.Any(), gomock.Eq(reminder.ID)).
 					Times(1).
-					Return(db.Birthday{}, sql.ErrNoRows)
+					Return(db.Reminder{}, sql.ErrNoRows)
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusNotFound, recorder.Code)
@@ -54,12 +54,12 @@ func TestGetBirthdayAPI(t *testing.T) {
 		},
 		{
 			name:       "InternalError",
-			birthdayID: birthday.ID,
+			reminderID: reminder.ID,
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
-					GetBirthday(gomock.Any(), gomock.Eq(birthday.ID)).
+					GetReminder(gomock.Any(), gomock.Eq(reminder.ID)).
 					Times(1).
-					Return(db.Birthday{}, sql.ErrConnDone)
+					Return(db.Reminder{}, sql.ErrConnDone)
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
 				require.Equal(t, http.StatusInternalServerError, recorder.Code)
@@ -67,10 +67,10 @@ func TestGetBirthdayAPI(t *testing.T) {
 		},
 		{
 			name:       "InvalidID",
-			birthdayID: 0,
+			reminderID: 0,
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
-					GetBirthday(gomock.Any(), gomock.Any()).
+					GetReminder(gomock.Any(), gomock.Any()).
 					Times(0)
 			},
 			checkResponse: func(t *testing.T, recorder *httptest.ResponseRecorder) {
@@ -92,7 +92,7 @@ func TestGetBirthdayAPI(t *testing.T) {
 			server := NewServer(store)
 			recorder := httptest.NewRecorder()
 
-			url := fmt.Sprintf("/birthdays/%d", tc.birthdayID)
+			url := fmt.Sprintf("/reminders/%d", tc.reminderID)
 			request, err := http.NewRequest(http.MethodGet, url, nil)
 			require.NoError(t, err)
 
@@ -103,20 +103,34 @@ func TestGetBirthdayAPI(t *testing.T) {
 
 }
 
-func randomBirthday() db.Birthday {
-	return db.Birthday{
+func randomReminder() db.Reminder {
+	user := randomUser()
+	return db.Reminder{
 		ID:             utils.RandomInt(1, 1000),
 		FullName:       utils.RandomFullName(),
-		FutureBirthday: utils.RandomDate(),
+		PersonalNumber: utils.RandomPnr(),
+		User:           user.UserName,
+		PhoneNumber:    utils.RandomPhoneNumber(),
+		CreatedAt:      utils.RandomDate(),
 	}
 }
 
-func requireBodyMatchBirthday(t *testing.T, body *bytes.Buffer, birthday db.Birthday) {
+func randomUser() db.User {
+	return db.User{
+		UserName:       utils.RandomUserName(),
+		HashedPassword: utils.RandomHashedPassword(), // TODO: build hashed password generator
+		FullName:       utils.RandomFullName(),
+		Email:          utils.RandomHashedPassword(),
+		PhoneNumber:    utils.RandomPhoneNumber(),
+	}
+}
+
+func requireBodyMatchReminder(t *testing.T, body *bytes.Buffer, reminder db.Reminder) {
 	data, err := ioutil.ReadAll(body)
 	require.NoError(t, err)
 
-	var gotBirthday db.Birthday
-	err = json.Unmarshal(data, &gotBirthday)
+	var gotReminder db.Reminder
+	err = json.Unmarshal(data, &gotReminder)
 	require.NoError(t, err)
-	require.Equal(t, birthday, gotBirthday)
+	require.Equal(t, reminder, gotReminder)
 }

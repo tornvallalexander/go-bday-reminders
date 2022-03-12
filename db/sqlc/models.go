@@ -6,8 +6,21 @@ import (
 	"time"
 )
 
-type Birthday struct {
+type Reminder struct {
 	ID             int64     `json:"id"`
 	FullName       string    `json:"full_name"`
-	FutureBirthday time.Time `json:"future_birthday"`
+	PersonalNumber int64     `json:"personal_number"`
+	User           string    `json:"user"`
+	PhoneNumber    int64     `json:"phone_number"`
+	CreatedAt      time.Time `json:"created_at"`
+}
+
+type User struct {
+	UserName          string    `json:"user_name"`
+	HashedPassword    string    `json:"hashed_password"`
+	FullName          string    `json:"full_name"`
+	Email             string    `json:"email"`
+	PhoneNumber       int64     `json:"phone_number"`
+	PasswordChangedAt time.Time `json:"password_changed_at"`
+	CreatedAt         time.Time `json:"created_at"`
 }

@@ -80,8 +80,8 @@ func RandomPhoneNumber() int64 {
 	return int64(RandomNumber(10, digits))
 }
 
-// RandomUserName returns a randomly generated username (11 characters)
-func RandomUserName() string {
+// RandomUsername returns a randomly generated username (11 characters)
+func RandomUsername() string {
 	return RandomString(11, lowercase+uppercase+digits)
 }
 

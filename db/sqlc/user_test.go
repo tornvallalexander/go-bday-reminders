@@ -10,7 +10,7 @@ import (
 
 func createRandomUser(t *testing.T) User {
 	arg := CreateUserParams{
-		UserName:       utils.RandomUserName(),
+		Username:       utils.RandomUsername(),
 		HashedPassword: utils.RandomHashedPassword(),
 		FullName:       utils.RandomFullName(),
 		Email:          utils.RandomEmail(),
@@ -21,13 +21,13 @@ func createRandomUser(t *testing.T) User {
 	require.NoError(t, err)
 	require.NotEmpty(t, user)
 
-	require.NotZero(t, user.UserName)
+	require.NotZero(t, user.Username)
 	require.NotZero(t, user.HashedPassword)
 	require.NotZero(t, user.FullName)
 	require.NotZero(t, user.Email)
 	require.NotZero(t, user.PhoneNumber)
 
-	require.Equal(t, arg.UserName, user.UserName)
+	require.Equal(t, arg.Username, user.Username)
 	require.Equal(t, arg.HashedPassword, user.HashedPassword)
 	require.Equal(t, arg.FullName, user.FullName)
 	require.Equal(t, arg.Email, user.Email)
@@ -42,11 +42,11 @@ func TestCreateUser(t *testing.T) {
 
 func TestGetUser(t *testing.T) {
 	user1 := createRandomUser(t)
-	user2, err := testQueries.GetUser(context.Background(), user1.UserName)
+	user2, err := testQueries.GetUser(context.Background(), user1.Username)
 	require.NoError(t, err)
 	require.NotEmpty(t, user2)
 
-	require.Equal(t, user1.UserName, user2.UserName)
+	require.Equal(t, user1.Username, user2.Username)
 	require.Equal(t, user1.HashedPassword, user2.HashedPassword)
 	require.Equal(t, user1.FullName, user2.FullName)
 	require.Equal(t, user1.Email, user2.Email)

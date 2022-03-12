@@ -15,7 +15,7 @@ func createRandomReminder(t *testing.T) Reminder {
 	arg := CreateReminderParams{
 		FullName:       utils.RandomFullName(),
 		PersonalNumber: utils.RandomPnr(),
-		User:           user.UserName,
+		User:           user.Username,
 		PhoneNumber:    utils.RandomPhoneNumber(),
 	}
 

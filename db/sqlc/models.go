@@ -16,7 +16,7 @@ type Reminder struct {
 }
 
 type User struct {
-	UserName          string    `json:"user_name"`
+	Username          string    `json:"username"`
 	HashedPassword    string    `json:"hashed_password"`
 	FullName          string    `json:"full_name"`
 	Email             string    `json:"email"`

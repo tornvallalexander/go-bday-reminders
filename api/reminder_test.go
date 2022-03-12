@@ -109,7 +109,7 @@ func randomReminder() db.Reminder {
 		ID:             utils.RandomInt(1, 1000),
 		FullName:       utils.RandomFullName(),
 		PersonalNumber: utils.RandomPnr(),
-		User:           user.UserName,
+		User:           user.Username,
 		PhoneNumber:    utils.RandomPhoneNumber(),
 		CreatedAt:      utils.RandomDate(),
 	}
@@ -117,7 +117,7 @@ func randomReminder() db.Reminder {
 
 func randomUser() db.User {
 	return db.User{
-		UserName:       utils.RandomUserName(),
+		Username:       utils.RandomUsername(),
 		HashedPassword: utils.RandomHashedPassword(), // TODO: build hashed password generator
 		FullName:       utils.RandomFullName(),
 		Email:          utils.RandomHashedPassword(),

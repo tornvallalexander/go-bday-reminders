@@ -10,9 +10,9 @@ type Querier interface {
 	CreateReminder(ctx context.Context, arg CreateReminderParams) (Reminder, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	DeleteReminder(ctx context.Context, id int64) (Reminder, error)
-	DeleteUser(ctx context.Context, userName string) (string, error)
+	DeleteUser(ctx context.Context, username string) error
 	GetReminder(ctx context.Context, id int64) (Reminder, error)
-	GetUser(ctx context.Context, userName string) (User, error)
+	GetUser(ctx context.Context, username string) (User, error)
 	ListReminders(ctx context.Context, arg ListRemindersParams) ([]Reminder, error)
 	UpdateReminder(ctx context.Context, arg UpdateReminderParams) (Reminder, error)
 }

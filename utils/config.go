@@ -8,6 +8,8 @@ type Config struct {
 	AuthToken  string `mapstructure:"AUTH_TOKEN"`
 	Receiver   string `mapstructure:"RECEIVER"`
 	Sender     string `mapstructure:"SENDER"`
+	DBDriver   string `mapstructure:"DB_DRIVER"`
+	DBSource   string `mapstructure:"DB_SOURCE"`
 }
 
 // LoadConfig loads all environment variables

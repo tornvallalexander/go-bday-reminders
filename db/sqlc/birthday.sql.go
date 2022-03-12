@@ -72,7 +72,7 @@ func (q *Queries) ListBirthdays(ctx context.Context, arg ListBirthdaysParams) ([
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Birthday
+	items := []Birthday{}
 	for rows.Next() {
 		var i Birthday
 		if err := rows.Scan(&i.ID, &i.FullName, &i.FutureBirthday); err != nil {

@@ -104,7 +104,7 @@ func TestGetReminderAPI(t *testing.T) {
 }
 
 func randomReminder(t *testing.T) db.Reminder {
-	user := randomUser(t)
+	user, _ := randomUser(t)
 	return db.Reminder{
 		ID:             utils.RandomInt(1, 1000),
 		FullName:       utils.RandomFullName(),
@@ -112,20 +112,6 @@ func randomReminder(t *testing.T) db.Reminder {
 		User:           user.Username,
 		PhoneNumber:    utils.RandomPhoneNumber(),
 		CreatedAt:      utils.RandomDate(),
-	}
-}
-
-func randomUser(t *testing.T) db.User {
-	hashedPassword, err := utils.HashPassword(utils.RandomPassword(8))
-	require.NoError(t, err)
-	require.NotEmpty(t, hashedPassword)
-
-	return db.User{
-		Username:       utils.RandomUsername(),
-		HashedPassword: hashedPassword,
-		FullName:       utils.RandomFullName(),
-		Email:          utils.RandomPassword(11),
-		PhoneNumber:    utils.RandomPhoneNumber(),
 	}
 }
 

@@ -15,7 +15,7 @@ type CreateReminderParams struct {
 	FullName       string `json:"full_name"`
 	PersonalNumber int64  `json:"personal_number"`
 	User           string `json:"user"`
-	PhoneNumber    int64  `json:"phone_number"`
+	PhoneNumber    string `json:"phone_number"`
 }
 
 func (q *Queries) CreateReminder(ctx context.Context, arg CreateReminderParams) (Reminder, error) {

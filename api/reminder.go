@@ -12,7 +12,7 @@ type createReminderRequest struct {
 	FullName       string `json:"full_name" binding:"required"`
 	PersonalNumber int64  `json:"personal_number" binding:"required"`
 	User           string `json:"user" binding:"required"`
-	PhoneNumber    int64  `json:"phone_number" binding:"required"`
+	PhoneNumber    string `json:"phone_number" binding:"required"`
 }
 
 func (server *Server) createReminder(ctx *gin.Context) {
@@ -26,7 +26,7 @@ func (server *Server) createReminder(ctx *gin.Context) {
 		FullName:       req.FullName,
 		PersonalNumber: req.PersonalNumber,
 		User:           req.User,
-		PhoneNumber:    0,
+		PhoneNumber:    req.PhoneNumber,
 	}
 
 	reminder, err := server.store.CreateReminder(context.Background(), arg)

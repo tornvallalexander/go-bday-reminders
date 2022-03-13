@@ -76,8 +76,8 @@ func RandomPnr() int64 {
 }
 
 // RandomPhoneNumber returns a randomly generated phone number (10 digits)
-func RandomPhoneNumber() int64 {
-	return int64(RandomNumber(10, digits))
+func RandomPhoneNumber() string {
+	return RandomString(10, digits)
 }
 
 // RandomUsername returns a randomly generated username (11 characters)

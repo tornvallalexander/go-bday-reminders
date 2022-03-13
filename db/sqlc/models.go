@@ -11,7 +11,7 @@ type Reminder struct {
 	FullName       string    `json:"full_name"`
 	PersonalNumber int64     `json:"personal_number"`
 	User           string    `json:"user"`
-	PhoneNumber    int64     `json:"phone_number"`
+	PhoneNumber    string    `json:"phone_number"`
 	CreatedAt      time.Time `json:"created_at"`
 }
 
@@ -20,7 +20,7 @@ type User struct {
 	HashedPassword    string    `json:"hashed_password"`
 	FullName          string    `json:"full_name"`
 	Email             string    `json:"email"`
-	PhoneNumber       int64     `json:"phone_number"`
+	PhoneNumber       string    `json:"phone_number"`
 	PasswordChangedAt time.Time `json:"password_changed_at"`
 	CreatedAt         time.Time `json:"created_at"`
 }

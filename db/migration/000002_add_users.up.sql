@@ -20,7 +20,3 @@ CREATE TABLE "reminders" (
 );
 
 ALTER TABLE "reminders" ADD FOREIGN KEY ("user") REFERENCES "users" ("username");
-
-CREATE INDEX ON "reminders" ("user");
-
-CREATE UNIQUE INDEX ON "reminders" ("user");

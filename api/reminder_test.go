@@ -17,7 +17,7 @@ import (
 )
 
 func TestGetReminderAPI(t *testing.T) {
-	reminder := randomReminder()
+	reminder := randomReminder(t)
 
 	testCases := []struct {
 		name          string
@@ -103,8 +103,8 @@ func TestGetReminderAPI(t *testing.T) {
 
 }
 
-func randomReminder() db.Reminder {
-	user := randomUser()
+func randomReminder(t *testing.T) db.Reminder {
+	user := randomUser(t)
 	return db.Reminder{
 		ID:             utils.RandomInt(1, 1000),
 		FullName:       utils.RandomFullName(),
@@ -115,12 +115,16 @@ func randomReminder() db.Reminder {
 	}
 }
 
-func randomUser() db.User {
+func randomUser(t *testing.T) db.User {
+	hashedPassword, err := utils.HashPassword(utils.RandomPassword(8))
+	require.NoError(t, err)
+	require.NotEmpty(t, hashedPassword)
+
 	return db.User{
 		Username:       utils.RandomUsername(),
-		HashedPassword: utils.RandomHashedPassword(), // TODO: build hashed password generator
+		HashedPassword: hashedPassword,
 		FullName:       utils.RandomFullName(),
-		Email:          utils.RandomHashedPassword(),
+		Email:          utils.RandomPassword(11),
 		PhoneNumber:    utils.RandomPhoneNumber(),
 	}
 }

@@ -85,9 +85,9 @@ func RandomUsername() string {
 	return RandomString(11, lowercase+uppercase+digits)
 }
 
-// RandomHashedPassword returns a randomly generated and hashed password (15 characters)
-func RandomHashedPassword() string {
-	return RandomString(15, lowercase+uppercase+digits)
+// RandomPassword returns a randomly generated and hashed password
+func RandomPassword(length int) string {
+	return RandomString(length, lowercase+uppercase+digits)
 }
 
 // RandomEmail returns a randomly generated email (12 characters before "@")

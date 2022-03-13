@@ -15,6 +15,8 @@ func NewServer(store db.Store) *Server {
 	server := &Server{store: store}
 	router := gin.Default()
 
+	router.POST("/users", server.createUser)
+
 	router.POST("/reminders", server.createReminder)
 	router.GET("/reminders/:id", server.getReminder)
 	router.GET("/reminders", server.listReminder)

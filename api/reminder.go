@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"github.com/gin-gonic/gin"
+	"github.com/lib/pq"
 	db "go-bday-reminders/db/sqlc"
 	"net/http"
 )
@@ -31,6 +32,13 @@ func (server *Server) createReminder(ctx *gin.Context) {
 
 	reminder, err := server.store.CreateReminder(context.Background(), arg)
 	if err != nil {
+		if pqErr, ok := err.(*pq.Error); ok {
+			switch pqErr.Code.Name() {
+			case "foreign_key_violation", "unique_violation":
+				ctx.JSON(http.StatusForbidden, errorResponse(pqErr))
+				return
+			}
+		}
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}

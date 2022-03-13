@@ -47,10 +47,6 @@ func EqCreateUserParams(arg db.CreateUserParams, password string) gomock.Matcher
 	return eqCreateUserParamsMatcher{arg, password}
 }
 
-// bad request
-// internal server error
-// pqError, forbidden
-
 func TestCreateUserAPI(t *testing.T) {
 	user, password := randomUser(t)
 

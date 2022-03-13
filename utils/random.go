@@ -54,6 +54,10 @@ func RandomNumber(n int, s string) int {
 	return num
 }
 
+func RandomStringAlphabet(length int) string {
+	return RandomString(length, lowercase+uppercase)
+}
+
 func RandomFullName() string {
 	return fmt.Sprintf(
 		"%s%s %s%s",

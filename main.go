@@ -12,17 +12,20 @@ import (
 func main() {
 	config, err := utils.LoadConfig(".")
 	if err != nil {
-		log.Fatal("Could not load env vars:", err)
+		log.Fatal("could not load env vars:", err)
 	}
 	conn, err := sql.Open(config.DBDriver, config.DBSource)
 	if err != nil {
-		log.Fatal("Could not connect to db:", err)
+		log.Fatal("could not connect to db:", err)
 	}
 	store := db.NewStore(conn)
-	server := api.NewServer(store)
+	server, err := api.NewServer(config, store)
+	if err != nil {
+		log.Fatal("could not start new server")
+	}
 
 	err = server.Start(config.ServerAddress)
 	if err != nil {
-		log.Fatal("Couldn't start server:", err)
+		log.Fatal("couldn't start server:", err)
 	}
 }

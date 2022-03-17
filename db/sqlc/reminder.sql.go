@@ -78,18 +78,20 @@ func (q *Queries) GetReminder(ctx context.Context, id int64) (Reminder, error) {
 
 const listReminders = `-- name: ListReminders :many
 SELECT id, full_name, personal_number, "user", phone_number, created_at FROM reminders
+WHERE "user" = $1
 ORDER BY id
-LIMIT $1
-OFFSET $2
+LIMIT $2
+OFFSET $3
 `
 
 type ListRemindersParams struct {
-	Limit  int32 `json:"limit"`
-	Offset int32 `json:"offset"`
+	User   string `json:"user"`
+	Limit  int32  `json:"limit"`
+	Offset int32  `json:"offset"`
 }
 
 func (q *Queries) ListReminders(ctx context.Context, arg ListRemindersParams) ([]Reminder, error) {
-	rows, err := q.db.QueryContext(ctx, listReminders, arg.Limit, arg.Offset)
+	rows, err := q.db.QueryContext(ctx, listReminders, arg.User, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}

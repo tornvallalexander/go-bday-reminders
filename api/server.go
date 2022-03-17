@@ -38,9 +38,11 @@ func (server *Server) setupRouter() {
 	router.POST("/users", server.createUser)
 	router.POST("/users/login", server.loginUser)
 
-	router.POST("/reminders", server.createReminder)
-	router.GET("/reminders/:id", server.getReminder)
-	router.GET("/reminders", server.listReminder)
+	authRoutes := router.Group("/").Use(authMiddleWare(server.tokenMaker))
+
+	authRoutes.POST("/reminders", server.createReminder)
+	authRoutes.GET("/reminders/:id", server.getReminder)
+	authRoutes.GET("/reminders", server.listReminder)
 
 	server.router = router
 }

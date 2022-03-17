@@ -77,21 +77,23 @@ func TestDeleteReminder(t *testing.T) {
 }
 
 func TestListReminders(t *testing.T) {
+	var lastReminder Reminder
 	for i := 0; i < 10; i++ {
-		createRandomReminder(t)
+		lastReminder = createRandomReminder(t)
 	}
 
 	arg := ListRemindersParams{
+		User:   lastReminder.User,
 		Limit:  5,
-		Offset: 5,
+		Offset: 0,
 	}
 
 	reminders, err := testQueries.ListReminders(context.Background(), arg)
 	require.NoError(t, err)
-	require.Len(t, reminders, 5)
+	require.NotEmpty(t, reminders)
 
 	for _, reminder := range reminders {
 		require.NotEmpty(t, reminder)
-
+		require.Equal(t, reminder.User, lastReminder.User)
 	}
 }

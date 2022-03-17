@@ -3,16 +3,17 @@ package api
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 	db "go-bday-reminders/db/sqlc"
+	"go-bday-reminders/token"
 	"net/http"
 )
 
 type createReminderRequest struct {
 	FullName       string `json:"full_name" binding:"required"`
 	PersonalNumber int64  `json:"personal_number" binding:"required"`
-	User           string `json:"user" binding:"required"`
 	PhoneNumber    string `json:"phone_number" binding:"required"`
 }
 
@@ -23,10 +24,12 @@ func (server *Server) createReminder(ctx *gin.Context) {
 		return
 	}
 
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
+
 	arg := db.CreateReminderParams{
 		FullName:       req.FullName,
 		PersonalNumber: req.PersonalNumber,
-		User:           req.User,
+		User:           authPayload.Username,
 		PhoneNumber:    req.PhoneNumber,
 	}
 
@@ -67,6 +70,13 @@ func (server *Server) getReminder(ctx *gin.Context) {
 		return
 	}
 
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
+	if reminder.User != authPayload.Username {
+		err := errors.New("account doesn't belong to the authenticated user")
+		ctx.JSON(http.StatusUnauthorized, errorResponse(err))
+		return
+	}
+
 	ctx.JSON(http.StatusOK, reminder)
 }
 
@@ -82,7 +92,9 @@ func (server *Server) listReminder(ctx *gin.Context) {
 		return
 	}
 
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
 	arg := db.ListRemindersParams{
+		User:   authPayload.Username,
 		Limit:  req.PageSize,
 		Offset: (req.PageID - 1) * req.PageSize,
 	}

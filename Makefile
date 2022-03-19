@@ -1,17 +1,17 @@
 postgres:
-	docker run --name postgres_birthday_reminders --network birthday-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+	docker run --name postgres-birthday-reminders --network birthday-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
 startdb:
-	docker start postgres_birthday_reminders
+	docker start postgres-birthday-reminders
 
 stopdb:
-	docker stop postgres_birthday_reminders
+	docker stop postgres-birthday-reminders
 
 createdb:
-	docker exec -it postgres_birthday_reminders createdb --username=root --owner=root birthday_reminders
+	docker exec -it postgres-birthday-reminders createdb --username=root --owner=root birthday_reminders
 
 dropdb:
-	docker exec -it postgres_birthday_reminders dropdb birthday_reminders
+	docker exec -it postgres-birthday-reminders dropdb birthday_reminders
 
 migrateup:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/birthday_reminders?sslmode=disable" -verbose up

@@ -1,5 +1,5 @@
 postgres:
-	docker run --name postgres_birthday_reminders -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+	docker run --name postgres_birthday_reminders --network birthday-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
 startdb:
 	docker start postgres_birthday_reminders

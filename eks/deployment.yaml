@@ -17,6 +17,6 @@ spec:
       containers:
         - name: birthday-reminders-api
           image: 364271544117.dkr.ecr.eu-central-1.amazonaws.com/birthday-reminders:latest
-          imagePullPolicy: always
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: birthday-reminders-api-deployment
+  labels:
+    app: birthday-reminders-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: birthday-reminders-api
+  template:
+    metadata:
+      labels:
+        app: birthday-reminders-api
+    spec:
+      containers:
+        - name: birthday-reminders-api
+          image: 364271544117.dkr.ecr.eu-central-1.amazonaws.com/birthday-reminders:0ed4a010cb4a739124afde9dd0908d76550e3b7b
+          ports:
+            - containerPort: 8080

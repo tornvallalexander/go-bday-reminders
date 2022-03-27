@@ -14,17 +14,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: "api.birthdays.tornvallalexander.com"
-    http:
-      paths:
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: birthday-reminders-api-service
-              port:
-                number: 80
+    - host: "api.birthdays.tornvallalexander.com"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: birthday-reminders-api-service
+                port:
+                  number: 80
   tls:
-  - hosts:
-    - api.birthdays.tornvallalexander.com
-    secretName: birthday-reminders-api-cert
+    - hosts:
+      - api.birthdays.tornvallalexander.com
+      secretName: birthday-reminders-api-cert

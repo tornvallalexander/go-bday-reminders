@@ -1,6 +1,12 @@
 postgres:
 	docker run --name postgres-birthday-reminders --network birthday-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
+up:
+	docker compose up
+
+down:
+	docker compose down
+
 startdb:
 	docker start postgres-birthday-reminders
 
@@ -31,4 +37,6 @@ server:
 mock:
 	mockgen -package mockdb -destination db/mock/store.go go-bday-reminders/db/sqlc Store
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc startdb stopdb test server mock
+# migrate create -ext sql -dir db/migration -seq <migration_name>
+
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test server mock up down startdb stopdb

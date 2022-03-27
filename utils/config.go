@@ -7,15 +7,16 @@ import (
 
 // Config stores all necessary configuration for application
 type Config struct {
-	TwilioAccountSid    string        `mapstructure:"TWILIO_ACCOUNT_SID"`
-	TwilioAuthToken     string        `mapstructure:"TWILIO_AUTH_TOKEN"`
-	TwilioReceiver      string        `mapstructure:"TWILIO_RECEIVER"`
-	TwilioSender        string        `mapstructure:"TWILIO_SENDER"`
-	DBDriver            string        `mapstructure:"DB_DRIVER"`
-	DBSource            string        `mapstructure:"DB_SOURCE"`
-	ServerAddress       string        `mapstructure:"SERVER_ADDRESS"`
-	TokenSymmetricKey   string        `mapstructure:"TOKEN_SYMMETRIC_KEY"`
-	AccessTokenDuration time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
+	TwilioAccountSid     string        `mapstructure:"TWILIO_ACCOUNT_SID"`
+	TwilioAuthToken      string        `mapstructure:"TWILIO_AUTH_TOKEN"`
+	TwilioReceiver       string        `mapstructure:"TWILIO_RECEIVER"`
+	TwilioSender         string        `mapstructure:"TWILIO_SENDER"`
+	DBDriver             string        `mapstructure:"DB_DRIVER"`
+	DBSource             string        `mapstructure:"DB_SOURCE"`
+	ServerAddress        string        `mapstructure:"SERVER_ADDRESS"`
+	TokenSymmetricKey    string        `mapstructure:"TOKEN_SYMMETRIC_KEY"`
+	AccessTokenDuration  time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
+	RefreshTokenDuration time.Duration `mapstructure:"REFRESH_TOKEN_DURATION"`
 }
 
 // LoadConfig loads all environment variables

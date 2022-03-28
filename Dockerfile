@@ -12,12 +12,12 @@ WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/migrate.linux-amd64 ./migrate
 COPY app.env .
-RUN chmod a+x wait-for.sh
-RUN chmod a+x start.sh
 COPY start.sh .
 COPY wait-for.sh .
 COPY db/migration ./migration
 
+RUN chmod a+x /app/wait-for.sh
+RUN chmod a+x /app/start.sh
 EXPOSE 8080
 ENTRYPOINT [ "/app/start.sh" ]
 CMD [ "/app/main" ]

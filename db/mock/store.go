@@ -140,6 +140,21 @@ func (mr *MockStoreMockRecorder) GetSession(arg0, arg1 interface{}) *gomock.Call
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSession", reflect.TypeOf((*MockStore)(nil).GetSession), arg0, arg1)
 }
 
+// GetSmsReminders mocks base method.
+func (m *MockStore) GetSmsReminders(arg0 context.Context, arg1 string) ([]db.Reminder, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetSmsReminders", arg0, arg1)
+	ret0, _ := ret[0].([]db.Reminder)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetSmsReminders indicates an expected call of GetSmsReminders.
+func (mr *MockStoreMockRecorder) GetSmsReminders(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSmsReminders", reflect.TypeOf((*MockStore)(nil).GetSmsReminders), arg0, arg1)
+}
+
 // GetUser mocks base method.
 func (m *MockStore) GetUser(arg0 context.Context, arg1 string) (db.User, error) {
 	m.ctrl.T.Helper()

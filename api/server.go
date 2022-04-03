@@ -45,6 +45,8 @@ func (server *Server) setupRouter() {
 	authRoutes.GET("/reminders/:id", server.getReminder)
 	authRoutes.GET("/reminders", server.listReminder)
 
+	authRoutes.POST("/sms", server.getSmsReminders)
+
 	server.router = router
 }
 

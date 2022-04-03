@@ -16,6 +16,7 @@ type Querier interface {
 	DeleteUser(ctx context.Context, username string) error
 	GetReminder(ctx context.Context, id int64) (Reminder, error)
 	GetSession(ctx context.Context, id uuid.UUID) (Session, error)
+	GetSmsReminders(ctx context.Context, user string) ([]Reminder, error)
 	GetUser(ctx context.Context, username string) (User, error)
 	ListReminders(ctx context.Context, arg ListRemindersParams) ([]Reminder, error)
 	UpdateReminder(ctx context.Context, arg UpdateReminderParams) (Reminder, error)
